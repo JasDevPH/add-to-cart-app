@@ -1,32 +1,50 @@
 import { Pressable, Text, View } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 import { useCart } from '../hooks/useCart';
 import { formatPrice } from '../utils/cart';
+import { QtyStepper } from './QtyStepper';
 
 export function ProductCard({ product }) {
-  const { addToCart, cart } = useCart();
+  const { addToCart, removeFromCart, cart } = useCart();
   const qtyInCart = cart.find((item) => item.id === product.id)?.qty ?? 0;
 
   return (
-    <View className="mb-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-      <View className="flex-row items-start justify-between">
-        <Text className="flex-1 pr-2 text-lg font-semibold text-slate-900">
-          {product.productName}
-        </Text>
-        <Text className="text-lg font-bold text-indigo-600">{formatPrice(product.price)}</Text>
+    <View className="m-1.5 flex-1 rounded-3xl border border-line bg-white p-3">
+      <View className="aspect-square items-center justify-center rounded-2xl bg-tile">
+        <Feather name={product.icon} size={40} color="#111111" />
       </View>
-      <Text className="mt-1 text-sm text-slate-500">{product.description}</Text>
+
+      <Text numberOfLines={1} className="mt-3 font-inter-semibold text-[15px] text-ink">
+        {product.productName}
+      </Text>
+      <Text numberOfLines={2} className="mt-0.5 h-8 font-inter text-xs leading-4 text-muted">
+        {product.description}
+      </Text>
 
       <View className="mt-3 flex-row items-center justify-between">
-        <Text className="text-xs text-slate-400">
-          {qtyInCart > 0 ? `${qtyInCart} in cart` : 'Not in cart'}
-        </Text>
-        <Pressable
-          onPress={() => addToCart(product)}
-          className="rounded-xl bg-indigo-600 px-4 py-2 active:bg-indigo-800"
-        >
-          <Text className="font-semibold text-white">+ Add to cart</Text>
-        </Pressable>
+        <Text className="font-inter-bold text-[15px] text-ink">{formatPrice(product.price)}</Text>
+        {qtyInCart === 0 ? (
+          <Pressable
+            onPress={() => addToCart(product)}
+            accessibilityRole="button"
+            accessibilityLabel={`Add ${product.productName} to cart`}
+            className="h-8 w-8 items-center justify-center rounded-full bg-ink active:opacity-80"
+          >
+            <Feather name="plus" size={16} color="#FFFFFF" />
+          </Pressable>
+        ) : null}
       </View>
+
+      {qtyInCart > 0 ? (
+        <View className="mt-2 items-end">
+          <QtyStepper
+            size="sm"
+            qty={qtyInCart}
+            onDecrement={() => removeFromCart(product.id)}
+            onIncrement={() => addToCart(product)}
+          />
+        </View>
+      ) : null}
     </View>
   );
 }

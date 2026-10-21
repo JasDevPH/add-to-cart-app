@@ -1,39 +1,45 @@
 import { Pressable, Text, View } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 import { useCart } from '../hooks/useCart';
 import { formatPrice } from '../utils/cart';
+import { QtyStepper } from './QtyStepper';
 
 export function CartItem({ item }) {
   const { addToCart, removeFromCart, removeAllOf } = useCart();
 
   return (
-    <View className="flex-row items-center border-b border-slate-100 py-3">
-      <View className="flex-1">
-        <Text className="font-semibold text-slate-900">{item.productName}</Text>
-        <Text className="text-sm text-slate-500">
-          {formatPrice(item.price)} × {item.qty} = {formatPrice(item.price * item.qty)}
+    <View className="flex-row items-center border-b border-line py-3.5">
+      <View className="h-14 w-14 items-center justify-center rounded-2xl bg-tile">
+        <Feather name={item.icon} size={22} color="#111111" />
+      </View>
+
+      <View className="ml-3 flex-1">
+        <Text numberOfLines={1} className="font-inter-semibold text-[15px] text-ink">
+          {item.productName}
+        </Text>
+        <Text className="mt-0.5 font-inter text-xs text-muted">
+          {formatPrice(item.price)} × {item.qty}
+        </Text>
+        <Text className="mt-1 font-inter-bold text-sm text-ink">
+          {formatPrice(item.price * item.qty)}
         </Text>
       </View>
 
-      <View className="flex-row items-center">
-        <Pressable
-          onPress={() => removeFromCart(item.id)}
-          className="h-8 w-8 items-center justify-center rounded-lg bg-slate-200 active:bg-slate-300"
-        >
-          <Text className="text-lg font-bold text-slate-700">−</Text>
-        </Pressable>
-        <Text className="w-8 text-center font-semibold">{item.qty}</Text>
-        <Pressable
-          onPress={() => addToCart(item)}
-          className="h-8 w-8 items-center justify-center rounded-lg bg-slate-200 active:bg-slate-300"
-        >
-          <Text className="text-lg font-bold text-slate-700">+</Text>
-        </Pressable>
+      <View className="items-end">
         <Pressable
           onPress={() => removeAllOf(item.id)}
-          className="ml-2 rounded-lg bg-rose-100 px-2 py-1.5 active:bg-rose-200"
+          accessibilityLabel={`Remove ${item.productName}`}
+          hitSlop={8}
+          className="mb-2 p-1"
         >
-          <Text className="text-xs font-semibold text-rose-600">Remove</Text>
+          <Feather name="trash-2" size={16} color="#6B7280" />
         </Pressable>
+        <QtyStepper
+          size="sm"
+          qty={item.qty}
+          onDecrement={() => removeFromCart(item.id)}
+          onIncrement={() => addToCart(item)}
+        />
       </View>
     </View>
   );

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- ShopCart mark: ink tile, white bag outline, emerald "item" dot -->
+  <rect width="1024" height="1024" rx="232" fill="#111111"/>
+  <g transform="translate(0 -34)" fill="none" stroke="#FFFFFF" stroke-width="44" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M312 420 H712 L684 776 Q680 812 644 812 H380 Q344 812 340 776 Z"/>
+    <path d="M412 420 V384 Q412 284 512 284 Q612 284 612 384 V420"/>
+  </g>
+  <circle cx="512" cy="586" r="38" fill="#10B981"/>
+</svg>
