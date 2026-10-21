@@ -7,6 +7,7 @@ import {
   cartTotal,
   isValidVoucher,
   applyDiscount,
+  VOUCHER_CODE,
   VOUCHER_RATE,
 } from '../utils/cart';
 
@@ -70,6 +71,7 @@ export function CartProvider({ children }) {
       itemCount,
       total,
       discountedTotal,
+      voucherCode: VOUCHER_CODE,
       discountRate: VOUCHER_RATE,
       voucherApplied,
       voucherError,

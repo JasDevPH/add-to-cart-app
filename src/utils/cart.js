@@ -3,6 +3,8 @@
 
 export const VOUCHER_CODE = 'discount10';
 export const VOUCHER_RATE = 0.1;
+export const CURRENCY_SYMBOL = '₱';
+export const LOCALE = 'en-PH';
 
 // Add one unit of a product. If it is already in the cart, bump its quantity.
 export function addItem(cart, product) {
@@ -46,7 +48,7 @@ export function applyDiscount(total, rate = VOUCHER_RATE) {
 }
 
 export function formatPrice(amount) {
-  return `₱${amount.toLocaleString('en-PH', {
+  return `${CURRENCY_SYMBOL}${amount.toLocaleString(LOCALE, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   })}`;

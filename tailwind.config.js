@@ -4,15 +4,8 @@ module.exports = {
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
-      // ShopCart brand tokens: mono palette + one emerald accent.
-      colors: {
-        ink: '#111111',
-        muted: '#6B7280',
-        line: '#E7E5E4',
-        canvas: '#FAFAF9',
-        tile: '#F2F2F0',
-        accent: '#059669',
-      },
+      // Brand tokens come from src/theme/colors.js (also used by components).
+      colors: require('./src/theme/colors'),
       // Inter weights loaded with useFonts in App.js. Each weight is its own
       // font file on Android, so we pick the family instead of fontWeight.
       fontFamily: {

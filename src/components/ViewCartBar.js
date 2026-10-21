@@ -1,5 +1,6 @@
 import { Pressable, Text, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import colors from '../theme/colors';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useCart } from '../hooks/useCart';
 import { formatPrice } from '../utils/cart';
@@ -25,7 +26,7 @@ export function ViewCartBar({ onPress }) {
       >
         <View className="flex-row items-center">
           <View className="h-9 w-9 items-center justify-center rounded-full bg-white/15">
-            <Feather name="shopping-bag" size={17} color="#FFFFFF" />
+            <Feather name="shopping-bag" size={17} color={colors.white} />
           </View>
           <Text className="ml-3 font-inter-semibold text-[15px] text-white">View cart</Text>
           <View className="ml-2 rounded-full bg-white/15 px-2 py-0.5">

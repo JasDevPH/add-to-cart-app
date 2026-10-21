@@ -46,6 +46,7 @@ src/
   utils/cart.js            # pure helpers: addItem, removeItem, cartTotal, applyDiscount…
   context/CartContext.js   # CartProvider: state + derived values
   hooks/useCart.js         # custom hook
+  theme/colors.js          # brand palette (used by tailwind.config.js and icon colors)
   components/
     Header.js              # logo, wordmark, cart button + badge
     ProductCard.js         # grid card with add button / qty stepper

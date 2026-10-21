@@ -1,5 +1,6 @@
 import { Pressable, Text, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import colors from '../theme/colors';
 
 // Compact − qty + control shared by product cards and cart lines.
 export function QtyStepper({ qty, onDecrement, onIncrement, size = 'md' }) {
@@ -13,7 +14,7 @@ export function QtyStepper({ qty, onDecrement, onIncrement, size = 'md' }) {
         accessibilityLabel="Remove one"
         className={`${button} items-center justify-center rounded-full bg-white active:bg-line`}
       >
-        <Feather name="minus" size={icon} color="#111111" />
+        <Feather name="minus" size={icon} color={colors.ink} />
       </Pressable>
       <Text className="min-w-7 text-center font-inter-semibold text-sm text-ink">{qty}</Text>
       <Pressable
@@ -21,7 +22,7 @@ export function QtyStepper({ qty, onDecrement, onIncrement, size = 'md' }) {
         accessibilityLabel="Add one"
         className={`${button} items-center justify-center rounded-full bg-ink active:opacity-80`}
       >
-        <Feather name="plus" size={icon} color="#FFFFFF" />
+        <Feather name="plus" size={icon} color={colors.white} />
       </Pressable>
     </View>
   );

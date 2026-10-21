@@ -11,6 +11,7 @@ import {
   View,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import colors from '../theme/colors';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useCart } from '../hooks/useCart';
 import { formatPrice } from '../utils/cart';
@@ -26,6 +27,7 @@ export function CartModal({ visible, onClose }) {
     itemCount,
     total,
     discountedTotal,
+    voucherCode,
     discountRate,
     voucherApplied,
     voucherError,
@@ -91,14 +93,14 @@ export function CartModal({ visible, onClose }) {
                 accessibilityLabel="Close cart"
                 className="h-9 w-9 items-center justify-center rounded-full bg-tile active:bg-line"
               >
-                <Feather name="x" size={18} color="#111111" />
+                <Feather name="x" size={18} color={colors.ink} />
               </Pressable>
             </View>
 
             {isEmpty ? (
               <View className="items-center py-14">
                 <View className="h-16 w-16 items-center justify-center rounded-full bg-tile">
-                  <Feather name="shopping-bag" size={26} color="#6B7280" />
+                  <Feather name="shopping-bag" size={26} color={colors.muted} />
                 </View>
                 <Text className="mt-4 font-inter-semibold text-base text-ink">Your cart is empty</Text>
                 <Text className="mt-1 font-inter text-sm text-muted">Add something you love.</Text>
@@ -116,9 +118,9 @@ export function CartModal({ visible, onClose }) {
                   {voucherApplied ? (
                     <View className="flex-row items-center justify-between rounded-2xl bg-emerald-50 px-4 py-3">
                       <View className="flex-row items-center">
-                        <Feather name="tag" size={16} color="#059669" />
+                        <Feather name="tag" size={16} color={colors.accent} />
                         <Text className="ml-2 font-inter-semibold text-sm text-accent">
-                          DISCOUNT10 · {Math.round(discountRate * 100)}% off
+                          {voucherCode.toUpperCase()} · {Math.round(discountRate * 100)}% off
                         </Text>
                       </View>
                       <Pressable
@@ -133,12 +135,12 @@ export function CartModal({ visible, onClose }) {
                     </View>
                   ) : (
                     <View className="flex-row items-center rounded-2xl border border-line bg-canvas pl-4 pr-1.5">
-                      <Feather name="tag" size={16} color="#6B7280" />
+                      <Feather name="tag" size={16} color={colors.muted} />
                       <TextInput
                         value={code}
                         onChangeText={setCode}
                         placeholder="Voucher code"
-                        placeholderTextColor="#9CA3AF"
+                        placeholderTextColor={colors.placeholder}
                         autoCapitalize="none"
                         autoCorrect={false}
                         returnKeyType="done"

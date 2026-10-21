@@ -1,5 +1,6 @@
 import { Pressable, Text, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import colors from '../theme/colors';
 import { useCart } from '../hooks/useCart';
 import { formatPrice } from '../utils/cart';
 import { QtyStepper } from './QtyStepper';
@@ -11,7 +12,7 @@ export function ProductCard({ product }) {
   return (
     <View className="m-1.5 flex-1 rounded-3xl border border-line bg-white p-3">
       <View className="aspect-square items-center justify-center rounded-2xl bg-tile">
-        <Feather name={product.icon} size={40} color="#111111" />
+        <Feather name={product.icon} size={40} color={colors.ink} />
       </View>
 
       <Text numberOfLines={1} className="mt-3 font-inter-semibold text-[15px] text-ink">
@@ -30,7 +31,7 @@ export function ProductCard({ product }) {
             accessibilityLabel={`Add ${product.productName} to cart`}
             className="h-8 w-8 items-center justify-center rounded-full bg-ink active:opacity-80"
           >
-            <Feather name="plus" size={16} color="#FFFFFF" />
+            <Feather name="plus" size={16} color={colors.white} />
           </Pressable>
         ) : null}
       </View>

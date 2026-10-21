@@ -1,5 +1,6 @@
 import { Pressable, Text, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import colors from '../theme/colors';
 import { useCart } from '../hooks/useCart';
 import { formatPrice } from '../utils/cart';
 import { QtyStepper } from './QtyStepper';
@@ -10,7 +11,7 @@ export function CartItem({ item }) {
   return (
     <View className="flex-row items-center border-b border-line py-3.5">
       <View className="h-14 w-14 items-center justify-center rounded-2xl bg-tile">
-        <Feather name={item.icon} size={22} color="#111111" />
+        <Feather name={item.icon} size={22} color={colors.ink} />
       </View>
 
       <View className="ml-3 flex-1">
@@ -32,7 +33,7 @@ export function CartItem({ item }) {
           hitSlop={8}
           className="mb-2 p-1"
         >
-          <Feather name="trash-2" size={16} color="#6B7280" />
+          <Feather name="trash-2" size={16} color={colors.muted} />
         </Pressable>
         <QtyStepper
           size="sm"
