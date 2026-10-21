@@ -175,7 +175,9 @@ export function CartModal({ visible, onClose }) {
                   </View>
                   {voucherApplied ? (
                     <View className="mt-1.5 flex-row justify-between">
-                      <Text className="font-inter text-sm text-accent">Discount (10%)</Text>
+                      <Text className="font-inter text-sm text-accent">
+                        Discount ({Math.round(discountRate * 100)}%)
+                      </Text>
                       <Text className="font-inter-medium text-sm text-accent">
                         −{formatPrice(total - discountedTotal)}
                       </Text>
