@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "add-to-cart-app",
+    "name": "ShopCart",
     "slug": "add-to-cart-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -15,10 +15,12 @@
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
-      }
+      },
+      "package": "com.jasdevph.addtocart"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
     }
   }
 }
