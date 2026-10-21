@@ -54,6 +54,15 @@ export function CartModal({ visible, onClose }) {
 
   const isEmpty = cart.length === 0;
 
+  // Clear the typed code once it is applied. The voucher can later be removed
+  // from outside this component (CartContext drops it when the cart empties),
+  // and the input must come back empty instead of showing the old code.
+  const handleApply = () => {
+    if (applyVoucher(code)) {
+      setCode('');
+    }
+  };
+
   return (
     <Modal
       visible={visible}
@@ -124,10 +133,7 @@ export function CartModal({ visible, onClose }) {
                         </Text>
                       </View>
                       <Pressable
-                        onPress={() => {
-                          clearVoucher();
-                          setCode('');
-                        }}
+                        onPress={clearVoucher}
                         hitSlop={8}
                       >
                         <Text className="font-inter-medium text-sm text-muted underline">Remove</Text>
@@ -144,11 +150,11 @@ export function CartModal({ visible, onClose }) {
                         autoCapitalize="none"
                         autoCorrect={false}
                         returnKeyType="done"
-                        onSubmitEditing={() => applyVoucher(code)}
+                        onSubmitEditing={handleApply}
                         className="flex-1 px-3 py-3 font-inter text-sm text-ink"
                       />
                       <Pressable
-                        onPress={() => applyVoucher(code)}
+                        onPress={handleApply}
                         disabled={code.trim().length === 0}
                         className={`rounded-xl px-4 py-2 ${
                           code.trim().length === 0 ? 'bg-line' : 'bg-ink active:opacity-80'
